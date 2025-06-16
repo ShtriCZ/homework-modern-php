@@ -51,9 +51,9 @@ function processLines(
     return $stats;
 }
 
-// Filtr: vynechává DEBUG zprávy
+// Filtr: vynechává DEBUG zprávy pomocí stripos
 $filter = function (string $line): bool {
-    return !preg_match('/test\.DEBUG/i', $line);
+    return stripos($line, 'test.DEBUG') === false;
 };
 
 // Dekorátor: extrahuje úroveň logování (např. "error", "info")
@@ -67,7 +67,7 @@ $decorator = function (string $line): string {
 // ----------- Spuštění skriptu -----------
 
 if ($argc < 2) {
-    echo "Použití: php modern.php <soubor>\n";
+    echo "Použití: php new.php <soubor>\n";
     exit(1);
 }
 
